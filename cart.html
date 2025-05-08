@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your Cart - Sunny Pastries</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <div class="logo-nav">
+      <a href="index.html">
+        <img src="images/relogo.png" alt="Logo">
+      </a>
+    </div>
+    <div class="hamburger" id="hamburger">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+    <nav id="nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="MENU.html">Menu</a></li>
+        <li><a href="ABOUT.html">About</a></li>
+        <li><a href="CONTACT.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="auth-buttons">
+      <a href="CART.html" class="icon-button">
+        <img src="images/cart.png" alt="Cart">
+      </a>
+      <a href="LOGIN.html" class="login-btn">
+        <img src="images/person.png" alt="Login">
+      </a>
+    </div>
+    <div id="user-greeting" class="user-greeting"></div>
+  </header>
+
+  <main>
+    <section class="cart-section">
+      <h1>Your Shopping Cart</h1>
+      
+      <div class="cart-items" id="cart-items">
+        <!-- Cart items will be dynamically added here -->
+      </div>
+      
+      <div class="cart-summary">
+        <h2>Order Summary</h2>
+        <p>Total: <span id="total-price">₱0.00</span></p>
+        <button id="checkout-btn" class="checkout-button">Proceed to Checkout</button>
+        <p id="checkout-message"></p>
+        <div id="login-redirect" style="display: none;">
+          <a href="LOGIN.html">Log in to your account</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Sunny Pastries. All rights reserved.</p>
+    <a href="https://www.facebook.com" target="_blank"><img src="images/facebook.png" alt="Facebook"></a>
+    <a href="https://www.instagram.com" target="_blank"><img src="images/Instagram.png" alt="Instagram"></a>
+    <a href="https://www.tiktok.com" target="_blank"><img src="images/tiktok.png" alt="TikTok"></a>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

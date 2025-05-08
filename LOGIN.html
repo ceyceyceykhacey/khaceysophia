@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - Sunny Pastries</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .form-container {
+      margin-top: 30px;
+      background-color: #fff9f5;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .form-title {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #e76f51;
+    }
+    
+    .form-toggle {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+    
+    .form-toggle button {
+      background: none;
+      border: none;
+      padding: 10px 20px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.1rem;
+      cursor: pointer;
+      color: #5a3e2b;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    
+    .form-toggle button.active {
+      font-weight: bold;
+      color: #e76f51;
+    }
+    
+    .form-toggle button.active::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 3px;
+      background-color: #e76f51;
+      bottom: 0;
+      left: 0;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #5a3e2b;
+    }
+    
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="password"] {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+      transition: border-color 0.3s;
+    }
+    
+    .form-group input:focus {
+      border-color: #e76f51;
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(231, 111, 81, 0.2);
+    }
+    
+    .password-container {
+      position: relative;
+    }
+    
+    .password-toggle {
+      display: flex;
+      align-items: center;
+      margin-top: 8px;
+    }
+    
+    .password-toggle input {
+      width: auto;
+      margin-right: 8px;
+    }
+    
+    .password-toggle label {
+      font-weight: normal;
+      font-size: 0.9rem;
+    }
+    
+    .toggle-password {
+      position: absolute;
+      right: 10px;
+      top: 12px;
+      cursor: pointer;
+      color: #5a3e2b;
+      font-size: 16px;
+    }
+    
+    #signup-form {
+      display: none;
+    }
+    
+    .login-options {
+      margin-top: 20px;
+      text-align: center;
+    }
+    
+    .forgot-password {
+      display: block;
+      margin-top: 10px;
+      text-align: right;
+      color: #e76f51;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+    
+    .forgot-password:hover {
+      text-decoration: underline;
+    }
+    
+    button[type="submit"] {
+      background-color: #e76f51;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 12px;
+      width: 100%;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin-top: 10px;
+    }
+    
+    button[type="submit"]:hover {
+      background-color: #d65c41;
+    }
+    
+    #login-status {
+      margin-top: 20px;
+      padding: 12px;
+      border-radius: 5px;
+      display: none;
+      text-align: center;
+    }
+    
+    .success {
+      background-color: #d4edda;
+      color: #155724;
+    }
+    
+    .error {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+    
+    .error-message {
+      color: #e74c3c;
+      font-size: 0.9rem;
+      margin-top: 5px;
+      display: none;
+    }
+    
+    .password-hint {
+      font-size: 0.8rem;
+      color: #666;
+      margin-top: 5px;
+    }
+    
+    .user-greeting {
+  text-align: center;
+  font-weight: 500;
+  color: #e76f51;
+  font-size: 0.9rem;
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: max-content;
+}
+    .header-user-actions {
+      display: flex;
+      align-items: center;
+    }
+    
+    .logout-button-header {
+      background-color: #e76f51;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 10px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      margin-left: 8px;
+    }
+    
+    .form-row {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .form-row .form-group {
+      flex: 1;
+    }
+    
+    .auth-buttons {
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+    
+    .login-btn {
+      position: relative;
+    }
+    
+    .user-menu {
+      position: absolute;
+      top: 40px;
+      right: 0;
+      background-color: white;
+      border-radius: 5px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 10px;
+      display: none;
+      z-index: 100;
+      min-width: 150px;
+    }
+    
+    .user-menu a, .user-menu button {
+      display: block;
+      padding: 8px 15px;
+      text-decoration: none;
+      color: #5a3e2b;
+      font-size: 0.9rem;
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    
+    .user-menu a:hover, .user-menu button:hover {
+      background-color: #fff0e6;
+      color: #e76f51;
+    }
+    
+    .login-btn.logged-in img {
+      border: 2px solid #e76f51;
+      border-radius: 50%;
+      padding: 2px;
+    }
+    .logout-container {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo-nav">
+      <a href="index.html">
+        <img src="images/relogo.png" alt="Logo">
+      </a>
+    </div>
+    <div class="hamburger" id="hamburger">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+    <nav id="nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="MENU.html">Menu</a></li>
+        <li><a href="ABOUT.html">About</a></li>
+        <li><a href="CONTACT.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="auth-buttons">
+      <a href="CART.html" class="icon-button">
+        <img src="images/cart.png" alt="Cart">
+        <div class="cart-count" id="cart-count">0</div>
+      </a>
+      <div class="login-container" style="position: relative;">
+        <div id="user-greeting" class="user-greeting"></div>
+        <a href="LOGIN.html" class="login-btn" id="login-btn">
+          <img src="images/person.png" alt="Login">
+        </a>
+        <div class="user-menu" id="user-menu">
+          <a href="profile.html">My Profile</a>
+          <a href="orders.html">My Orders</a>
+          <button id="logout-btn-header">Logout</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <div class="form-container">
+        <h2 class="form-title">Account Access</h2>
+        
+        <div class="form-toggle">
+          <button id="login-toggle" class="active">Login</button>
+          <button id="signup-toggle">Sign Up</button>
+        </div>
+        
+        <div id="login-form">
+          <form id="loginForm">
+            <div class="form-group">
+              <label for="login-identifier">Email or Username</label>
+              <input type="text" id="login-identifier" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="password">Password</label>
+              <div class="password-container">
+                <input type="password" id="password" required>
+                <span class="toggle-password" id="toggle-password-login">👁️</span>
+              </div>
+              <a href="#" class="forgot-password" id="forgot-password">Forgot password?</a>
+            </div>
+            
+            <button type="submit">Login</button>
+            <div id="error-message-login" class="error-message"></div>
+          </form>
+        </div>
+        
+        <div id="signup-form">
+          <form id="signupForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="signup-name">Full Name</label>
+                <input type="text" id="signup-name" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="signup-username">Username</label>
+                <input type="text" id="signup-username" required>
+                <small style="color: #666;">Will be used for display and login</small>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="signup-email">Email Address</label>
+              <input type="email" id="signup-email" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="signup-password">Password</label>
+              <div class="password-container">
+                <input type="password" id="signup-password" required>
+                <span class="toggle-password" id="toggle-password-signup">👁️</span>
+              </div>
+              <p class="password-hint">Password must be at least 6 characters with uppercase, lowercase, number and symbol</p>
+            </div>
+            
+            <button type="submit">Create Account</button>
+            <div id="error-message-signup" class="error-message"></div>
+          </form>
+        </div>
+        
+        <div id="login-status"></div>
+        
+        <div id="logout-section" style="display: none; margin-top: 20px; text-align: center;">
+          <p>You are currently logged in.</p>
+          <button id="logout-btn" class="checkout-button">Logout</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Sunny Pastries. All rights reserved.</p>
+    <a href="https://www.facebook.com" target="_blank"><img src="images/facebook.png" alt="Facebook"></a>
+    <a href="https://www.instagram.com" target="_blank"><img src="images/Instagram.png" alt="Instagram"></a>
+    <a href="https://www.tiktok.com" target="_blank"><img src="images/tiktok.png" alt="TikTok"></a>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const loginForm = document.getElementById("login-form");
+      const signupForm = document.getElementById("signup-form");
+      const loginToggle = document.getElementById("login-toggle");
+      const signupToggle = document.getElementById("signup-toggle");
+      const loginBtn = document.getElementById("login-btn");
+      const logoutSection = document.getElementById("logout-section");
+      const cartCount = document.getElementById("cart-count");
+      const loginStatus = document.getElementById("login-status");
+      const forgotPassword = document.getElementById("forgot-password");
+      const togglePasswordLogin = document.getElementById("toggle-password-login");
+      const togglePasswordSignup = document.getElementById("toggle-password-signup");
+      const userMenu = document.getElementById("user-menu");
+      
+      // Toggle user menu when clicking on login icon
+      loginBtn.addEventListener("click", function(e) {
+        if (localStorage.getItem("userLoggedIn") === "true") {
+          e.preventDefault();
+          userMenu.style.display = userMenu.style.display === "block" ? "none" : "block";
+        }
+      });
+      
+      // Close user menu when clicking elsewhere
+      document.addEventListener("click", function(e) {
+        if (e.target !== loginBtn && !loginBtn.contains(e.target) && 
+            e.target !== userMenu && !userMenu.contains(e.target)) {
+          userMenu.style.display = "none";
+        }
+      });
+      
+      // Check if user is logged in
+     // Replace the checkLoginStatus function with this updated version
+function checkLoginStatus() {
+  const isLoggedIn = localStorage.getItem("userLoggedIn") === "true";
+  const email = localStorage.getItem("userEmail");
+  const username = localStorage.getItem("userUsername");
+  const name = localStorage.getItem("userName");
+  
+  if (isLoggedIn) {
+    // Show logout section instead of forms on login page
+    if (loginForm) {
+      loginForm.style.display = "none";
+      signupForm.style.display = "none";
+      document.querySelector(".form-toggle").style.display = "none";
+      logoutSection.style.display = "block";
+      
+      // Update login status
+      loginStatus.textContent = `Welcome back ${username || name || email}!`;
+      loginStatus.classList.add("success");
+      loginStatus.style.display = "block";
+    }
+    
+    // Update header elements for logged in state
+    loginBtn.classList.add("logged-in");
+    loginBtn.href = "#"; // Prevent navigation when logged in
+    
+    // Make sure the login icon remains visible
+    const loginIcon = loginBtn.querySelector("img");
+    if (loginIcon) {
+      loginIcon.style.display = "block"; // Ensure icon is visible
+    }
+    
+    // Update user greeting
+    const userGreeting = document.getElementById("user-greeting");
+    if (userGreeting) {
+      const displayName = username || (name ? name.split(' ')[0] : '') || email.split('@')[0];
+      userGreeting.textContent = `Hi, ${displayName}`;
+      userGreeting.style.display = "block";
+    }
+    
+    // Set up header logout button
+    document.getElementById("logout-btn-header").addEventListener("click", () => {
+      localStorage.removeItem("userLoggedIn");
+      localStorage.removeItem("userEmail");
+      localStorage.removeItem("userName");
+      localStorage.removeItem("userUsername");
+      window.location.reload();
+    });
+  } else {
+    // Show login form and hide user elements
+    if (loginForm) {
+      loginForm.style.display = "block";
+      logoutSection.style.display = "none";
+    }
+    
+    loginBtn.classList.remove("logged-in");
+    loginBtn.href = "LOGIN.html";
+    
+    const userGreeting = document.getElementById("user-greeting");
+    if (userGreeting) {
+      userGreeting.textContent = "";
+      userGreeting.style.display = "none";
+    }
+    
+    userMenu.style.display = "none";
+  }
+}
+      
+      // Toggle between login and signup forms
+      if (loginToggle && signupToggle) {
+        loginToggle.addEventListener("click", () => {
+          loginForm.style.display = "block";
+          signupForm.style.display = "none";
+          loginToggle.classList.add("active");
+          signupToggle.classList.remove("active");
+        });
+        
+        signupToggle.addEventListener("click", () => {
+          loginForm.style.display = "none";
+          signupForm.style.display = "block";
+          loginToggle.classList.remove("active");
+          signupToggle.classList.add("active");
+        });
+      }
+      
+      // Show/hide password toggles
+      if (togglePasswordLogin) {
+        togglePasswordLogin.addEventListener("click", function() {
+          const passwordField = document.getElementById("password");
+          if (passwordField.type === "password") {
+            passwordField.type = "text";
+            this.textContent = "🔒";
+          } else {
+            passwordField.type = "password";
+            this.textContent = "👁️";
+          }
+        });
+      }
+      
+      if (togglePasswordSignup) {
+        togglePasswordSignup.addEventListener("click", function() {
+          const passwordField = document.getElementById("signup-password");
+          if (passwordField.type === "password") {
+            passwordField.type = "text";
+            this.textContent = "🔒";
+          } else {
+            passwordField.type = "password";
+            this.textContent = "👁️";
+          }
+        });
+      }
+      
+      // Forgot password functionality
+      if (forgotPassword) {
+        forgotPassword.addEventListener("click", function(e) {
+          e.preventDefault();
+          const identifier = document.getElementById("login-identifier").value.trim();
+          
+          if (!identifier) {
+            alert("Please enter your email or username first.");
+            return;
+          }
+          
+          // Get users from localStorage
+          const users = JSON.parse(localStorage.getItem("users")) || [];
+          const user = users.find(u => u.email === identifier || u.username === identifier);
+          
+          if (user) {
+            // In a real system, this would send a password reset email
+            alert("Password reset link has been sent to your email address. Please check your inbox.");
+          } else {
+            alert("No account found with this email or username. Please sign up first.");
+          }
+        });
+      }
+      
+      // Login Form Submission
+      const loginFormEl = document.getElementById("loginForm");
+      if (loginFormEl) {
+        loginFormEl.addEventListener("submit", function(event) {
+          event.preventDefault();
+          const identifier = document.getElementById("login-identifier").value.trim();
+          const password = document.getElementById("password").value;
+          const errorMessage = document.getElementById("error-message-login");
+          
+          // Get users from localStorage
+          const users = JSON.parse(localStorage.getItem("users")) || [];
+          const user = users.find(u => (u.email === identifier || u.username === identifier) && u.password === password);
+          
+          if (user) {
+            localStorage.setItem("userLoggedIn", "true");
+            localStorage.setItem("userEmail", user.email);
+            
+            // Store name and username if available
+            if (user.name) localStorage.setItem("userName", user.name);
+            if (user.username) localStorage.setItem("userUsername", user.username);
+            
+            // Display success message
+            loginStatus.textContent = "Login successful! Redirecting...";
+            loginStatus.classList.add("success");
+            loginStatus.classList.remove("error");
+            loginStatus.style.display = "block";
+            
+            // Redirect after a short delay
+            setTimeout(() => {
+              window.location.href = "index.html";
+            }, 1500);
+          } else {
+            errorMessage.textContent = "Invalid login credentials. Please check your details.";
+            errorMessage.style.display = "block";
+            setTimeout(() => {
+              errorMessage.style.display = "none";
+            }, 3000);
+          }
+        });
+      }
+      
+      // Signup Form Submission
+      const signupFormEl = document.getElementById("signupForm");
+      if (signupFormEl) {
+        signupFormEl.addEventListener("submit", function(event) {
+          event.preventDefault();
+          const name = document.getElementById("signup-name").value.trim();
+          const username = document.getElementById("signup-username").value.trim();
+          const email = document.getElementById("signup-email").value.trim();
+          const password = document.getElementById("signup-password").value;
+          const errorMessage = document.getElementById("error-message-signup");
+          
+          // Username validation
+          if (username.length < 3) {
+            errorMessage.textContent = "Username must be at least 3 characters long";
+            errorMessage.style.display = "block";
+            setTimeout(() => {
+              errorMessage.style.display = "none";
+            }, 3000);
+            return;
+          }
+          
+          if (!username.match(/^[a-zA-Z0-9_]+$/)) {
+            errorMessage.textContent = "Username can only contain letters, numbers, and underscores";
+            errorMessage.style.display = "block";
+            setTimeout(() => {
+              errorMessage.style.display = "none";
+            }, 3000);
+            return;
+          }
+          
+          // Get existing users
+          const users = JSON.parse(localStorage.getItem("users")) || [];
+          
+          // Check if email already exists
+          const emailExists = users.some(u => u.email === email);
+          if (emailExists) {
+            errorMessage.textContent = "Email already exists! Please use a different email.";
+            errorMessage.style.display = "block";
+            setTimeout(() => {
+              errorMessage.style.display = "none";
+            }, 3000);
+            return;
+          }
+          
+          // Check if username already exists
+          const usernameExists = users.some(u => u.username === username);
+          if (usernameExists) {
+            errorMessage.textContent = "Username already taken! Please choose another.";
+            errorMessage.style.display = "block";
+            setTimeout(() => {
+              errorMessage.style.display = "none";
+            }, 3000);
+            return;
+          }
+          
+          // Password validation
+          if (!password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%^&*])[A-Za-z\d@$!%^&*]{6,}$/)) {
+            errorMessage.textContent = "Password must be at least 6 characters and include uppercase, lowercase, number, and symbol.";
+            errorMessage.style.display = "block";
+            setTimeout(() => {
+              errorMessage.style.display = "none";
+            }, 3000);
+            return;
+          }
+          
+          // Add new user
+          const newUser = { name, username, email, password };
+          users.push(newUser);
+          localStorage.setItem("users", JSON.stringify(users));
+          localStorage.setItem("userLoggedIn", "true");
+          localStorage.setItem("userEmail", email);
+          localStorage.setItem("userName", name);
+          localStorage.setItem("userUsername", username);
+          
+          // Display success message
+          loginStatus.textContent = "Account created successfully! Redirecting...";
+          loginStatus.classList.add("success");
+          loginStatus.style.display = "block";
+          
+          // Redirect after a short delay
+          setTimeout(() => {
+            window.location.href = "index.html";
+          }, 1500);
+        });
+      }
+      
+      // Logout Functionality for the login page button
+      const logoutBtn = document.getElementById("logout-btn");
+      if (logoutBtn) {
+        logoutBtn.addEventListener("click", () => {
+          localStorage.removeItem("userLoggedIn");
+          localStorage.removeItem("userEmail");
+          localStorage.removeItem("userName");
+          localStorage.removeItem("userUsername");
+          
+          // Show success message
+          loginStatus.textContent = "Logged out successfully!";
+          loginStatus.classList.add("success");
+          loginStatus.style.display = "block";
+          
+          // Reset the page after a short delay
+          setTimeout(() => {
+            window.location.reload();
+          }, 1500);
+        });
+      }
+      
+      // Update cart count
+      function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const count = cart.reduce((total, item) => total + item.quantity, 0);
+        cartCount.textContent = count;
+      }
+      
+      // Initialize page
+      checkLoginStatus();
+      updateCartCount();
+      
+      // Toggle hamburger menu
+      const hamburger = document.getElementById("hamburger");
+      const nav = document.getElementById("nav");
+      
+      if (hamburger && nav) {
+        hamburger.addEventListener("click", () => {
+          nav.classList.toggle("active");
+        });
+      }
+    });
+  </script>
+</body>
+</html>

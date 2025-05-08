@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Profile - Sunny Pastries</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Profile container */
+    .profile-container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: #fafafa;
+      border-radius: 10px;
+      box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Profile section styling */
+    .profile-section {
+      margin: 20px 0;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-section h2 {
+      color: #e76f51;
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    /* Textareas and Input fields styling */
+    .profile-section textarea, .profile-section input {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      margin-bottom: 15px;
+      transition: border-color 0.3s;
+    }
+
+    .profile-section textarea:focus, .profile-section input:focus {
+      border-color: #e76f51;
+      outline: none;
+    }
+
+    /* Save Button Styling */
+    .btn-save {
+      background-color: #e76f51;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .btn-save:hover {
+      background-color: #b8573f;
+    }
+
+    /* Responsive styling */
+    @media (max-width: 768px) {
+      .profile-container {
+        padding: 15px;
+      }
+
+      .profile-section {
+        padding: 15px;
+      }
+
+      .btn-save {
+        width: 100%;
+        padding: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+    <header>
+        <div class="logo-nav">
+          <a href="index.html">
+            <img src="images/relogo.png" alt="Logo">
+          </a>
+        </div>
+        <div class="hamburger" id="hamburger">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+        <nav id="nav">
+          <ul>
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="MENU.html">Menu</a></li>
+            <li><a href="ABOUT.html">About</a></li>
+            <li><a href="CONTACT.html">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="auth-buttons">
+          <a href="CART.html" class="icon-button">
+            <img src="images/cart.png" alt="Cart">
+          </a>
+          <a href="LOGIN.html" class="login-btn">
+            <img src="images/person.png" alt="Login">
+          </a>
+        </div>
+        <div id="user-greeting" class="user-greeting"></div>
+      </header>
+
+  <div class="profile-container">
+    <h1>My Profile</h1>
+
+    <div class="profile-section">
+      <h2>Personal Information</h2>
+      <label for="username">Username</label>
+      <input type="text" id="username" value="JohnDoe" readonly>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" value="johndoe@example.com" readonly>
+
+      <label for="bio">Bio</label>
+      <textarea id="bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sit amet efficitur erat.</textarea>
+
+      <button class="btn-save">Save Changes</button>
+    </div>
+  </div>
+  <script src="main.js"></script>
+
+</body>
+</html>
+

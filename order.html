@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Orders - Sunny Pastries</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Orders container */
+    .orders-container {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 20px;
+      background-color: #fafafa;
+      border-radius: 10px;
+      box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Orders section styling */
+    .orders-section {
+      margin: 20px 0;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .orders-section h2 {
+      color: #e76f51;
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .order-item {
+      padding: 15px;
+      background-color: #fafafa;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .order-item p {
+      margin: 5px 0;
+      color: #333;
+    }
+
+    /* Edit Button Styling */
+    .btn-edit {
+      background-color: #e76f51;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .btn-edit:hover {
+      background-color: #b8573f;
+    }
+
+    /* Responsive styling */
+    @media (max-width: 768px) {
+      .orders-container {
+        padding: 15px;
+      }
+
+      .orders-section {
+        padding: 15px;
+      }
+
+      .btn-edit {
+        width: 100%;
+        padding: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+    <header>
+        <div class="logo-nav">
+          <a href="index.html">
+            <img src="images/relogo.png" alt="Logo">
+          </a>
+        </div>
+        <div class="hamburger" id="hamburger">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+        <nav id="nav">
+          <ul>
+            <li><a href="#" class="active">Home</a></li>
+            <li><a href="MENU.html">Menu</a></li>
+            <li><a href="ABOUT.html">About</a></li>
+            <li><a href="CONTACT.html">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="auth-buttons">
+          <a href="CART.html" class="icon-button">
+            <img src="images/cart.png" alt="Cart">
+          </a>
+          <a href="LOGIN.html" class="login-btn">
+            <img src="images/person.png" alt="Login">
+          </a>
+        </div>
+        <div id="user-greeting" class="user-greeting"></div>
+      </header>
+
+  <div class="orders-container">
+    <h1>My Orders</h1>
+
+    <div class="orders-section" id="orders-section">
+      <h2>Order History</h2>
+      <!-- Orders will be dynamically inserted here -->
+    </div>
+  </div>
+
+  <script>
+    // Fetch orders from localStorage and display them
+    const orders = JSON.parse(localStorage.getItem('orders')) || [];
+    const ordersSection = document.getElementById('orders-section');
+
+    if (orders.length > 0) {
+      orders.forEach(order => {
+        const orderDiv = document.createElement('div');
+        orderDiv.classList.add('order-item');
+
+        orderDiv.innerHTML = `
+          <p><strong>Order Date:</strong> ${order.date}</p>
+          <p><strong>Shipping Address:</strong> ${order.address}</p>
+          <p><strong>Payment Method:</strong> ${order.paymentMethod}</p>
+          <p><strong>Items:</strong></p>
+          <ul>
+            ${order.items.map(item => `<li>${item.name} - $${item.price}</li>`).join('')}
+          </ul>
+          <p><strong>Total:</strong> $${order.total}</p>
+        `;
+
+        ordersSection.appendChild(orderDiv);
+      });
+    } else {
+      ordersSection.innerHTML = '<p>No orders found.</p>';
+    }
+  </script>
+    <script src="main.js"></script>
+
+</body>
+</html>

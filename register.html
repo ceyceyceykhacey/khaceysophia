@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sunny Pastries - Register</title>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .register-container {
+      max-width: 550px;
+      margin: 50px auto;
+      background-color: #fff;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .register-header {
+      margin-bottom: 30px;
+    }
+    
+    .register-header h2 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+    
+    .register-header p {
+      color: #888;
+      font-size: 0.95rem;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: #5a3e2b;
+    }
+    
+    .form-group input {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid #f4a261;
+      border-radius: 8px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+    
+    .form-group input:focus {
+      outline: none;
+      border-color: #e76f51;
+    }
+    
+    .form-row {
+      display: flex;
+      gap: 20px;
+    }
+    
+    .form-row .form-group {
+      flex: 1;
+    }
+    
+    .terms {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+    
+    .terms input {
+      margin-right: 10px;
+      margin-top: 4px;
+      width: 18px;
+      height: 18px;
+      accent-color: #e76f51;
+    }
+    
+    .terms label {
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+    
+    .terms a {
+      color: #e76f51;
+      text-decoration: none;
+    }
+    
+    .terms a:hover {
+      text-decoration: underline;
+    }
+    
+    .register-btn {
+      background-color: #e76f51;
+      color: white;
+      border: none;
+      padding: 12px 0;
+      width: 100%;
+      font-size: 1.1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s;
+    }
+    
+    .register-btn:hover {
+      background-color: #b8573f;
+    }
+    
+    .login-link {
+      margin-top: 25px;
+      font-size: 0.95rem;
+    }
+    
+    .login-link a {
+      color: #e76f51;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    
+    .login-link a:hover {
+      text-decoration: underline;
+    }
+    
+    .error-message {
+      color: #e63946;
+      margin-top: 5px;
+      font-size: 0.9rem;
+    }
+    
+    .success-message {
+      color: #2a9d8f;
+      margin-top: 15px;
+      padding: 10px;
+      background-color: rgba(42, 157, 143, 0.1);
+      border-radius: 5px;
+      font-weight: 500;
+      text-align: center;
+    }
+    
+    @media (max-width: 768px) {
+      .register-container {
+        margin: 30px 15px;
+        padding: 20px;
+      }
+      
+      .form-row {
+        flex-direction: column;
+        gap: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo-nav">
+      <a href="index.html">
+        <img src="images/relogo.png" alt="Logo">
+      </a>
+    </div>
+    <div class="hamburger" id="hamburger">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+    <nav id="nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="ABOUT.html">About</a></li>
+        <li><a href="CONTACT.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="auth-buttons">
+      <a href="CART.html" class="icon-button">
+        <img src="images/cart.png" alt="Cart">
+      </a>
+      <a href="LOGIN.html" class="login-btn">
+        <img src="images/person.png" alt="Login">
+      </a>
+    </div>
+    <div id="user-greeting" class="user-greeting"></div>
+  </header>
+
+  <main>
+    <div class="register-container">
+      <div class="register-header">
+        <h2>Create Account</h2>
+        <p>Join Sunny Pastries for exclusive offers and rewards</p>
+      </div>
+      
+      <form id="register-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="first-name">First Name</label>
+            <input type="text" id="first-name" name="firstName" required>
+            <div id="first-name-error" class="error-message"></div>
+          </div>
+          
+          <div class="form-group">
+            <label for="last-name">Last Name</label>
+            <input type="text" id="last-name" name="lastName" required>
+            <div id="last-name-error" class="error-message"></div>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" required>
+          <div id="email-error" class="error-message"></div>
+        </div>
+        
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" required>
+          <div id="password-error" class="error-message"></div>
+        </div>
+        
+        <div class="form-group">
+          <label for="confirm-password">Confirm Password</label>
+          <input type="password" id="confirm-password" name="confirmPassword" required>
+          <div id="confirm-password-error" class="error-message"></div>
+        </div>
+        
+        <div class="terms">
+          <input type="checkbox" id="terms" name="terms" required>
+          <label for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>. I consent to receiving promotional emails about special offers, new products, and exclusive deals.</label>
+        </div>
+        
+        <button type="submit" class="register-btn">Create Account</button>
+        
+        <div id="register-error" class="error-message"></div>
+        <div id="register-success" class="success-message" style="display: none;"></div>
+      </form>
+      
+      <div class="login-link">
+        Already have an account? <a href="LOGIN.html">Sign In</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Sunny Pastries. All rights reserved.</p>
+    <a href="https://www.facebook.com" target="_blank"><img src="images/facebook.png" alt="Facebook"></a>
+    <a href="https://www.instagram.com" target="_blank"><img src="images/Instagram.png" alt="Instagram"></a>
+    <a href="https://www.tiktok.com" target="_blank"><img src="images/tiktok.png" alt="TikTok"></a>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    // Registration functionality
+    document.getElementById('register-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Reset error messages
+      document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+      document.getElementById('register-success').style.display = 'none';
+      
+      // Get form values
+      const firstName = document.getElementById('first-name').value.trim();
+      const lastName = document.getElementById('last-name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirm-password').value;
+      const termsChecked = document.getElementById('terms').checked;
+      
+      // Simple validation
+      let isValid = true;
+      
+      if (!firstName) {
+        document.getElementById('first-name-error').textContent = 'Please enter your first name';
+        isValid = false;
+      }
+      
+      if (!lastName) {
+        document.getElementById('last-name-error').textContent = 'Please enter your last name';
+        isValid = false;
+      }
+      
+      if (!email) {
+        document.getElementById('email-error').textContent = 'Please enter your email address';
+        isValid = false;
+      } else if (!isValidEmail(email)) {
+        document.getElementById('email-error').textContent = 'Please enter a valid email address';
+        isValid = false;
+      }
+      
+      if (!password) {
+        document.getElementById('password-error').textContent = 'Please create a password';
+        isValid = false;
+      } else if (password.length < 8) {
+        document.getElementById('password-error').textContent = 'Password must be at least 8 characters';
+        isValid = false;
+      }
+      
+      if (!confirmPassword) {
+        document.getElementById('confirm-password-error').textContent = 'Please confirm your password';
+        isValid = false;
+      } else if (password !== confirmPassword) {
+        document.getElementById('confirm-password-error').textContent = 'Passwords do not match';
+        isValid = false;
+      }
+      
+      if (!termsChecked) {
+        document.getElementById('register-error').textContent = 'You must agree to the Terms of Service and Privacy Policy';
+        isValid = false;
+      }
+      
+      if (isValid) {
+        // For demo purposes - this would normally be a server request
+        // Store user in localStorage
+        const users = JSON.parse(localStorage.getItem('users')) || [];
+        
+        // Check if email already exists
+        const existingUser = users.find(user => user.email === email);
+        if (existingUser) {
+          document.getElementById('email-error').textContent = 'This email is already registered';
+          return;
+        }
+        
+        // Add new user
+        users.push({
+          name: firstName + ' ' + lastName,
+          email: email,
+          password: password, // In a real app, never store plaintext passwords!
+          registeredDate: new Date().toISOString()
+        });
+        
+        localStorage.setItem('users', JSON.stringify(users));
+        
+        // Show success message
+        document.getElementById('register-success').textContent = 'Registration successful! Redirecting to login...';
+        document.getElementById('register-success').style.display = 'block';
+        
+        // Reset form
+        document.getElementById('register-form').reset();
+        
+        // Redirect to login page after 2 seconds
+        setTimeout(function() {
+          window.location.href = 'LOGIN.html';
+        }, 2000);
+      }
+    });
+    
+    // Email validation helper
+    function isValidEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
+    
+    // Check if user is already logged in
+    const currentUser = localStorage.getItem('currentUser');
+    if (currentUser) {
+      // Redirect to home page
+      window.location.href = 'index.html';
+    }
+  </script>
+</body>
+</html>
